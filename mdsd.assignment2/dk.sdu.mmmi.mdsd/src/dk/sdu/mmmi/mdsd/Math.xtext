@@ -1,0 +1,52 @@
+grammar dk.sdu.mmmi.mdsd.Math with org.eclipse.xtext.common.Terminals
+
+generate math "http://www.sdu.dk/mmmi/mdsd/Math"
+
+// Add a top-level rule that contains multiple MathExp elements
+MathExp:
+    'var' name=ID '=' exp=Exp (vars+=MathExp)*
+;
+
+Exp:
+    Addition
+;
+/*
+ * Handle + and - operation
+ * Multiplication is first to make sure that if there are * or / in the operation, then they are calcualted first, then + or -
+ * Describe operations with left-hand and right-hand expressions:
+ * We create new Plus and Minus operation nodes. 
+ * We store the value on the left side of + or - in the left property of Plus
+ * right is also another property of Plus and its value is what we have in the right side of + 
+ */
+Addition returns Exp:
+    Multiplication (({Plus.left=current} '+' right=Multiplication) |
+                    ({Minus.left=current} '-' right=Multiplication))*
+;
+// handle * and / operation
+Multiplication returns Exp:
+    Primary (({Mult.left=current} '*' right=Primary) |
+             ({Div.left=current} '/' right=Primary))*
+;
+
+// Allow numbers, parentheses or variable references
+Primary:
+    Number | Parenthesis | VariableUse
+;
+
+// Allow putting expressions in parentheses. Exp can be Addition, Multiplication or Primary
+Parenthesis:
+	'(' exp=Exp ')'
+;
+
+Number:
+	value=INT
+;
+
+/* 
+ * allow variable references. ref is the variable being referenced. MathExp refers to a variable that is defined 
+ * e.g. var x = 10
+ * var y = x + 2 (Here we use VariableUse), x is ref = [MathExp], where it is already defined 
+ * */ 
+VariableUse:
+	ref = [MathExp]
+;
