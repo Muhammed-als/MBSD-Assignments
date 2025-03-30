@@ -160,11 +160,11 @@ ruleExp returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getExpAccess().getLetExpParserRuleCall_0());
+			newCompositeNode(grammarAccess.getExpAccess().getLetExpressionParserRuleCall_0());
 		}
-		this_LetExp_0=ruleLetExp
+		this_LetExpression_0=ruleLetExpression
 		{
-			$current = $this_LetExp_0.current;
+			$current = $this_LetExpression_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
@@ -179,15 +179,15 @@ ruleExp returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleLetExp
-entryRuleLetExp returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getLetExpRule()); }
-	iv_ruleLetExp=ruleLetExp
-	{ $current=$iv_ruleLetExp.current; }
+// Entry rule entryRuleLetExpression
+entryRuleLetExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLetExpressionRule()); }
+	iv_ruleLetExpression=ruleLetExpression
+	{ $current=$iv_ruleLetExpression.current; }
 	EOF;
 
-// Rule LetExp
-ruleLetExp returns [EObject current=null]
+// Rule LetExpression
+ruleLetExpression returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -197,65 +197,62 @@ ruleLetExp returns [EObject current=null]
 	(
 		otherlv_0='let'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getLetExpAccess().getLetKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getLetExpressionAccess().getLetKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getLetExpressionAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getLetExpressionRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_2='='
+		{
+			newLeafNode(otherlv_2, grammarAccess.getLetExpressionAccess().getEqualsSignKeyword_2());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getLetExpAccess().getAssignmentsVariableAssignmentParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getLetExpressionAccess().getValueAdditionParserRuleCall_3_0());
 				}
-				lv_assignments_1_0=ruleVariableAssignment
+				lv_value_3_0=ruleAddition
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getLetExpRule());
+						$current = createModelElementForParent(grammarAccess.getLetExpressionRule());
 					}
-					add(
+					set(
 						$current,
-						"assignments",
-						lv_assignments_1_0,
-						"dk.sdu.mmmi.mdsd.Math.VariableAssignment");
+						"value",
+						lv_value_3_0,
+						"dk.sdu.mmmi.mdsd.Math.Addition");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		(
-			otherlv_2=','
-			{
-				newLeafNode(otherlv_2, grammarAccess.getLetExpAccess().getCommaKeyword_2_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getLetExpAccess().getAssignmentsVariableAssignmentParserRuleCall_2_1_0());
-					}
-					lv_assignments_3_0=ruleVariableAssignment
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getLetExpRule());
-						}
-						add(
-							$current,
-							"assignments",
-							lv_assignments_3_0,
-							"dk.sdu.mmmi.mdsd.Math.VariableAssignment");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)*
 		otherlv_4='in'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getLetExpAccess().getInKeyword_3());
+			newLeafNode(otherlv_4, grammarAccess.getLetExpressionAccess().getInKeyword_4());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getLetExpAccess().getBodyExpParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getLetExpressionAccess().getBodyExpParserRuleCall_5_0());
 				}
 				lv_body_5_0=ruleExp
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getLetExpRule());
+						$current = createModelElementForParent(grammarAccess.getLetExpressionRule());
 					}
 					set(
 						$current,
@@ -268,68 +265,8 @@ ruleLetExp returns [EObject current=null]
 		)
 		otherlv_6='end'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getLetExpAccess().getEndKeyword_5());
+			newLeafNode(otherlv_6, grammarAccess.getLetExpressionAccess().getEndKeyword_6());
 		}
-	)
-;
-
-// Entry rule entryRuleVariableAssignment
-entryRuleVariableAssignment returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getVariableAssignmentRule()); }
-	iv_ruleVariableAssignment=ruleVariableAssignment
-	{ $current=$iv_ruleVariableAssignment.current; }
-	EOF;
-
-// Rule VariableAssignment
-ruleVariableAssignment returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				lv_name_0_0=RULE_ID
-				{
-					newLeafNode(lv_name_0_0, grammarAccess.getVariableAssignmentAccess().getNameIDTerminalRuleCall_0_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getVariableAssignmentRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.eclipse.xtext.common.Terminals.ID");
-				}
-			)
-		)
-		otherlv_1='='
-		{
-			newLeafNode(otherlv_1, grammarAccess.getVariableAssignmentAccess().getEqualsSignKeyword_1());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getVariableAssignmentAccess().getValueExpParserRuleCall_2_0());
-				}
-				lv_value_2_0=ruleExp
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getVariableAssignmentRule());
-					}
-					set(
-						$current,
-						"value",
-						lv_value_2_0,
-						"dk.sdu.mmmi.mdsd.Math.Exp");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
 	)
 ;
 

@@ -5,6 +5,7 @@ package dk.sdu.mmmi.mdsd.math.impl;
 
 import dk.sdu.mmmi.mdsd.math.Div;
 import dk.sdu.mmmi.mdsd.math.Exp;
+import dk.sdu.mmmi.mdsd.math.LetExpression;
 import dk.sdu.mmmi.mdsd.math.MathExp;
 import dk.sdu.mmmi.mdsd.math.MathFactory;
 import dk.sdu.mmmi.mdsd.math.MathPackage;
@@ -13,7 +14,6 @@ import dk.sdu.mmmi.mdsd.math.Mult;
 import dk.sdu.mmmi.mdsd.math.Parenthesis;
 import dk.sdu.mmmi.mdsd.math.Plus;
 import dk.sdu.mmmi.mdsd.math.Primary;
-import dk.sdu.mmmi.mdsd.math.VariableAssignment;
 import dk.sdu.mmmi.mdsd.math.VariableUse;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -50,7 +50,7 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass variableAssignmentEClass = null;
+  private EClass letExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -231,9 +231,9 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
    * @generated
    */
   @Override
-  public EReference getExp_Assignments()
+  public EClass getLetExpression()
   {
-    return (EReference)expEClass.getEStructuralFeatures().get(0);
+    return letExpressionEClass;
   }
 
   /**
@@ -242,9 +242,9 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
    * @generated
    */
   @Override
-  public EReference getExp_Body()
+  public EAttribute getLetExpression_Name()
   {
-    return (EReference)expEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)letExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -253,9 +253,9 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
    * @generated
    */
   @Override
-  public EClass getVariableAssignment()
+  public EReference getLetExpression_Value()
   {
-    return variableAssignmentEClass;
+    return (EReference)letExpressionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -264,20 +264,9 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
    * @generated
    */
   @Override
-  public EAttribute getVariableAssignment_Name()
+  public EReference getLetExpression_Body()
   {
-    return (EAttribute)variableAssignmentEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getVariableAssignment_Value()
-  {
-    return (EReference)variableAssignmentEClass.getEStructuralFeatures().get(1);
+    return (EReference)letExpressionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -526,12 +515,11 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
     createEReference(mathExpEClass, MATH_EXP__VARS);
 
     expEClass = createEClass(EXP);
-    createEReference(expEClass, EXP__ASSIGNMENTS);
-    createEReference(expEClass, EXP__BODY);
 
-    variableAssignmentEClass = createEClass(VARIABLE_ASSIGNMENT);
-    createEAttribute(variableAssignmentEClass, VARIABLE_ASSIGNMENT__NAME);
-    createEReference(variableAssignmentEClass, VARIABLE_ASSIGNMENT__VALUE);
+    letExpressionEClass = createEClass(LET_EXPRESSION);
+    createEAttribute(letExpressionEClass, LET_EXPRESSION__NAME);
+    createEReference(letExpressionEClass, LET_EXPRESSION__VALUE);
+    createEReference(letExpressionEClass, LET_EXPRESSION__BODY);
 
     primaryEClass = createEClass(PRIMARY);
 
@@ -590,6 +578,7 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    letExpressionEClass.getESuperTypes().add(this.getExp());
     primaryEClass.getESuperTypes().add(this.getExp());
     parenthesisEClass.getESuperTypes().add(this.getPrimary());
     numberEClass.getESuperTypes().add(this.getPrimary());
@@ -606,12 +595,11 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
     initEReference(getMathExp_Vars(), this.getMathExp(), null, "vars", null, 0, -1, MathExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expEClass, Exp.class, "Exp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExp_Assignments(), this.getVariableAssignment(), null, "assignments", null, 0, -1, Exp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExp_Body(), this.getExp(), null, "body", null, 0, 1, Exp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(variableAssignmentEClass, VariableAssignment.class, "VariableAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getVariableAssignment_Name(), ecorePackage.getEString(), "name", null, 0, 1, VariableAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getVariableAssignment_Value(), this.getExp(), null, "value", null, 0, 1, VariableAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(letExpressionEClass, LetExpression.class, "LetExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getLetExpression_Name(), ecorePackage.getEString(), "name", null, 0, 1, LetExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLetExpression_Value(), this.getExp(), null, "value", null, 0, 1, LetExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLetExpression_Body(), this.getExp(), null, "body", null, 0, 1, LetExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(primaryEClass, Primary.class, "Primary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

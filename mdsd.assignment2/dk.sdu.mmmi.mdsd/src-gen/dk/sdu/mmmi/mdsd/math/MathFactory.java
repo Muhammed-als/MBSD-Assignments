@@ -42,13 +42,13 @@ public interface MathFactory extends EFactory
   Exp createExp();
 
   /**
-   * Returns a new object of class '<em>Variable Assignment</em>'.
+   * Returns a new object of class '<em>Let Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Variable Assignment</em>'.
+   * @return a new object of class '<em>Let Expression</em>'.
    * @generated
    */
-  VariableAssignment createVariableAssignment();
+  LetExpression createLetExpression();
 
   /**
    * Returns a new object of class '<em>Primary</em>'.

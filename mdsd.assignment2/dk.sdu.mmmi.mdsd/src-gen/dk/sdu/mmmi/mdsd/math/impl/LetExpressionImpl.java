@@ -4,8 +4,8 @@
 package dk.sdu.mmmi.mdsd.math.impl;
 
 import dk.sdu.mmmi.mdsd.math.Exp;
+import dk.sdu.mmmi.mdsd.math.LetExpression;
 import dk.sdu.mmmi.mdsd.math.MathPackage;
-import dk.sdu.mmmi.mdsd.math.VariableAssignment;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -14,23 +14,23 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Variable Assignment</b></em>'.
+ * An implementation of the model object '<em><b>Let Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link dk.sdu.mmmi.mdsd.math.impl.VariableAssignmentImpl#getName <em>Name</em>}</li>
- *   <li>{@link dk.sdu.mmmi.mdsd.math.impl.VariableAssignmentImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link dk.sdu.mmmi.mdsd.math.impl.LetExpressionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link dk.sdu.mmmi.mdsd.math.impl.LetExpressionImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link dk.sdu.mmmi.mdsd.math.impl.LetExpressionImpl#getBody <em>Body</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class VariableAssignmentImpl extends MinimalEObjectImpl.Container implements VariableAssignment
+public class LetExpressionImpl extends ExpImpl implements LetExpression
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -63,11 +63,21 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
   protected Exp value;
 
   /**
+   * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBody()
+   * @generated
+   * @ordered
+   */
+  protected Exp body;
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected VariableAssignmentImpl()
+  protected LetExpressionImpl()
   {
     super();
   }
@@ -80,7 +90,7 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
   @Override
   protected EClass eStaticClass()
   {
-    return MathPackage.Literals.VARIABLE_ASSIGNMENT;
+    return MathPackage.Literals.LET_EXPRESSION;
   }
 
   /**
@@ -105,7 +115,7 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MathPackage.VARIABLE_ASSIGNMENT__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, MathPackage.LET_EXPRESSION__NAME, oldName, name));
   }
 
   /**
@@ -130,7 +140,7 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
     value = newValue;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MathPackage.VARIABLE_ASSIGNMENT__VALUE, oldValue, newValue);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MathPackage.LET_EXPRESSION__VALUE, oldValue, newValue);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -148,14 +158,64 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
     {
       NotificationChain msgs = null;
       if (value != null)
-        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MathPackage.VARIABLE_ASSIGNMENT__VALUE, null, msgs);
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MathPackage.LET_EXPRESSION__VALUE, null, msgs);
       if (newValue != null)
-        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MathPackage.VARIABLE_ASSIGNMENT__VALUE, null, msgs);
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MathPackage.LET_EXPRESSION__VALUE, null, msgs);
       msgs = basicSetValue(newValue, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MathPackage.VARIABLE_ASSIGNMENT__VALUE, newValue, newValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, MathPackage.LET_EXPRESSION__VALUE, newValue, newValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Exp getBody()
+  {
+    return body;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetBody(Exp newBody, NotificationChain msgs)
+  {
+    Exp oldBody = body;
+    body = newBody;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MathPackage.LET_EXPRESSION__BODY, oldBody, newBody);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setBody(Exp newBody)
+  {
+    if (newBody != body)
+    {
+      NotificationChain msgs = null;
+      if (body != null)
+        msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MathPackage.LET_EXPRESSION__BODY, null, msgs);
+      if (newBody != null)
+        msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MathPackage.LET_EXPRESSION__BODY, null, msgs);
+      msgs = basicSetBody(newBody, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MathPackage.LET_EXPRESSION__BODY, newBody, newBody));
   }
 
   /**
@@ -168,8 +228,10 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case MathPackage.VARIABLE_ASSIGNMENT__VALUE:
+      case MathPackage.LET_EXPRESSION__VALUE:
         return basicSetValue(null, msgs);
+      case MathPackage.LET_EXPRESSION__BODY:
+        return basicSetBody(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -184,10 +246,12 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case MathPackage.VARIABLE_ASSIGNMENT__NAME:
+      case MathPackage.LET_EXPRESSION__NAME:
         return getName();
-      case MathPackage.VARIABLE_ASSIGNMENT__VALUE:
+      case MathPackage.LET_EXPRESSION__VALUE:
         return getValue();
+      case MathPackage.LET_EXPRESSION__BODY:
+        return getBody();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -202,11 +266,14 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case MathPackage.VARIABLE_ASSIGNMENT__NAME:
+      case MathPackage.LET_EXPRESSION__NAME:
         setName((String)newValue);
         return;
-      case MathPackage.VARIABLE_ASSIGNMENT__VALUE:
+      case MathPackage.LET_EXPRESSION__VALUE:
         setValue((Exp)newValue);
+        return;
+      case MathPackage.LET_EXPRESSION__BODY:
+        setBody((Exp)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -222,11 +289,14 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case MathPackage.VARIABLE_ASSIGNMENT__NAME:
+      case MathPackage.LET_EXPRESSION__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case MathPackage.VARIABLE_ASSIGNMENT__VALUE:
+      case MathPackage.LET_EXPRESSION__VALUE:
         setValue((Exp)null);
+        return;
+      case MathPackage.LET_EXPRESSION__BODY:
+        setBody((Exp)null);
         return;
     }
     super.eUnset(featureID);
@@ -242,10 +312,12 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case MathPackage.VARIABLE_ASSIGNMENT__NAME:
+      case MathPackage.LET_EXPRESSION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case MathPackage.VARIABLE_ASSIGNMENT__VALUE:
+      case MathPackage.LET_EXPRESSION__VALUE:
         return value != null;
+      case MathPackage.LET_EXPRESSION__BODY:
+        return body != null;
     }
     return super.eIsSet(featureID);
   }
@@ -267,4 +339,4 @@ public class VariableAssignmentImpl extends MinimalEObjectImpl.Container impleme
     return result.toString();
   }
 
-} //VariableAssignmentImpl
+} //LetExpressionImpl

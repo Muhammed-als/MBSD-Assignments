@@ -11,13 +11,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Math.ecore#//MathExp/exp"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Math.ecore#//MathExp/vars"/>
     </genClasses>
-    <genClasses ecoreClass="Math.ecore#//Exp">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Math.ecore#//Exp/assignments"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Math.ecore#//Exp/body"/>
-    </genClasses>
-    <genClasses ecoreClass="Math.ecore#//VariableAssignment">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Math.ecore#//VariableAssignment/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Math.ecore#//VariableAssignment/value"/>
+    <genClasses ecoreClass="Math.ecore#//Exp"/>
+    <genClasses ecoreClass="Math.ecore#//LetExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Math.ecore#//LetExpression/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Math.ecore#//LetExpression/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Math.ecore#//LetExpression/body"/>
     </genClasses>
     <genClasses ecoreClass="Math.ecore#//Primary"/>
     <genClasses ecoreClass="Math.ecore#//Parenthesis">

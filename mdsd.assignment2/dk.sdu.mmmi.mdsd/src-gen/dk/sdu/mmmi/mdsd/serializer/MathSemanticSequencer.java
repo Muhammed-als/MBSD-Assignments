@@ -5,14 +5,13 @@ package dk.sdu.mmmi.mdsd.serializer;
 
 import com.google.inject.Inject;
 import dk.sdu.mmmi.mdsd.math.Div;
-import dk.sdu.mmmi.mdsd.math.Exp;
+import dk.sdu.mmmi.mdsd.math.LetExpression;
 import dk.sdu.mmmi.mdsd.math.MathExp;
 import dk.sdu.mmmi.mdsd.math.MathPackage;
 import dk.sdu.mmmi.mdsd.math.Minus;
 import dk.sdu.mmmi.mdsd.math.Mult;
 import dk.sdu.mmmi.mdsd.math.Parenthesis;
 import dk.sdu.mmmi.mdsd.math.Plus;
-import dk.sdu.mmmi.mdsd.math.VariableAssignment;
 import dk.sdu.mmmi.mdsd.math.VariableUse;
 import dk.sdu.mmmi.mdsd.services.MathGrammarAccess;
 import java.util.Set;
@@ -43,8 +42,8 @@ public class MathSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case MathPackage.DIV:
 				sequence_Multiplication(context, (Div) semanticObject); 
 				return; 
-			case MathPackage.EXP:
-				sequence_LetExp(context, (Exp) semanticObject); 
+			case MathPackage.LET_EXPRESSION:
+				sequence_LetExpression(context, (LetExpression) semanticObject); 
 				return; 
 			case MathPackage.MATH_EXP:
 				sequence_MathExp(context, (MathExp) semanticObject); 
@@ -63,9 +62,6 @@ public class MathSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case MathPackage.PLUS:
 				sequence_Addition(context, (Plus) semanticObject); 
-				return; 
-			case MathPackage.VARIABLE_ASSIGNMENT:
-				sequence_VariableAssignment(context, (VariableAssignment) semanticObject); 
 				return; 
 			case MathPackage.VARIABLE_USE:
 				sequence_VariableUse(context, (VariableUse) semanticObject); 
@@ -130,15 +126,27 @@ public class MathSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Exp returns Exp
-	 *     LetExp returns Exp
+	 *     Exp returns LetExpression
+	 *     LetExpression returns LetExpression
 	 *
 	 * Constraint:
-	 *     (assignments+=VariableAssignment assignments+=VariableAssignment* body=Exp)
+	 *     (name=ID value=Addition body=Exp)
 	 * </pre>
 	 */
-	protected void sequence_LetExp(ISerializationContext context, Exp semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_LetExpression(ISerializationContext context, LetExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MathPackage.Literals.LET_EXPRESSION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MathPackage.Literals.LET_EXPRESSION__NAME));
+			if (transientValues.isValueTransient(semanticObject, MathPackage.Literals.LET_EXPRESSION__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MathPackage.Literals.LET_EXPRESSION__VALUE));
+			if (transientValues.isValueTransient(semanticObject, MathPackage.Literals.LET_EXPRESSION__BODY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MathPackage.Literals.LET_EXPRESSION__BODY));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLetExpressionAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getLetExpressionAccess().getValueAdditionParserRuleCall_3_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getLetExpressionAccess().getBodyExpParserRuleCall_5_0(), semanticObject.getBody());
+		feeder.finish();
 	}
 	
 	
@@ -266,29 +274,6 @@ public class MathSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getParenthesisAccess().getExpExpParserRuleCall_1_0(), semanticObject.getExp());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     VariableAssignment returns VariableAssignment
-	 *
-	 * Constraint:
-	 *     (name=ID value=Exp)
-	 * </pre>
-	 */
-	protected void sequence_VariableAssignment(ISerializationContext context, VariableAssignment semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MathPackage.Literals.VARIABLE_ASSIGNMENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MathPackage.Literals.VARIABLE_ASSIGNMENT__NAME));
-			if (transientValues.isValueTransient(semanticObject, MathPackage.Literals.VARIABLE_ASSIGNMENT__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MathPackage.Literals.VARIABLE_ASSIGNMENT__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getVariableAssignmentAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getVariableAssignmentAccess().getValueExpParserRuleCall_2_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

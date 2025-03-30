@@ -5,6 +5,7 @@ package dk.sdu.mmmi.mdsd.math.util;
 
 import dk.sdu.mmmi.mdsd.math.Div;
 import dk.sdu.mmmi.mdsd.math.Exp;
+import dk.sdu.mmmi.mdsd.math.LetExpression;
 import dk.sdu.mmmi.mdsd.math.MathExp;
 import dk.sdu.mmmi.mdsd.math.MathPackage;
 import dk.sdu.mmmi.mdsd.math.Minus;
@@ -12,7 +13,6 @@ import dk.sdu.mmmi.mdsd.math.Mult;
 import dk.sdu.mmmi.mdsd.math.Parenthesis;
 import dk.sdu.mmmi.mdsd.math.Plus;
 import dk.sdu.mmmi.mdsd.math.Primary;
-import dk.sdu.mmmi.mdsd.math.VariableAssignment;
 import dk.sdu.mmmi.mdsd.math.VariableUse;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -96,9 +96,9 @@ public class MathAdapterFactory extends AdapterFactoryImpl
         return createExpAdapter();
       }
       @Override
-      public Adapter caseVariableAssignment(VariableAssignment object)
+      public Adapter caseLetExpression(LetExpression object)
       {
-        return createVariableAssignmentAdapter();
+        return createLetExpressionAdapter();
       }
       @Override
       public Adapter casePrimary(Primary object)
@@ -193,16 +193,16 @@ public class MathAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link dk.sdu.mmmi.mdsd.math.VariableAssignment <em>Variable Assignment</em>}'.
+   * Creates a new adapter for an object of class '{@link dk.sdu.mmmi.mdsd.math.LetExpression <em>Let Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see dk.sdu.mmmi.mdsd.math.VariableAssignment
+   * @see dk.sdu.mmmi.mdsd.math.LetExpression
    * @generated
    */
-  public Adapter createVariableAssignmentAdapter()
+  public Adapter createLetExpressionAdapter()
   {
     return null;
   }

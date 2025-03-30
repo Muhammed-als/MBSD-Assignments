@@ -5,6 +5,7 @@ package dk.sdu.mmmi.mdsd.math.util;
 
 import dk.sdu.mmmi.mdsd.math.Div;
 import dk.sdu.mmmi.mdsd.math.Exp;
+import dk.sdu.mmmi.mdsd.math.LetExpression;
 import dk.sdu.mmmi.mdsd.math.MathExp;
 import dk.sdu.mmmi.mdsd.math.MathPackage;
 import dk.sdu.mmmi.mdsd.math.Minus;
@@ -12,7 +13,6 @@ import dk.sdu.mmmi.mdsd.math.Mult;
 import dk.sdu.mmmi.mdsd.math.Parenthesis;
 import dk.sdu.mmmi.mdsd.math.Plus;
 import dk.sdu.mmmi.mdsd.math.Primary;
-import dk.sdu.mmmi.mdsd.math.VariableAssignment;
 import dk.sdu.mmmi.mdsd.math.VariableUse;
 
 import org.eclipse.emf.ecore.EObject;
@@ -97,10 +97,11 @@ public class MathSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MathPackage.VARIABLE_ASSIGNMENT:
+      case MathPackage.LET_EXPRESSION:
       {
-        VariableAssignment variableAssignment = (VariableAssignment)theEObject;
-        T result = caseVariableAssignment(variableAssignment);
+        LetExpression letExpression = (LetExpression)theEObject;
+        T result = caseLetExpression(letExpression);
+        if (result == null) result = caseExp(letExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -208,17 +209,17 @@ public class MathSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Variable Assignment</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Let Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Variable Assignment</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Let Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseVariableAssignment(VariableAssignment object)
+  public T caseLetExpression(LetExpression object)
   {
     return null;
   }

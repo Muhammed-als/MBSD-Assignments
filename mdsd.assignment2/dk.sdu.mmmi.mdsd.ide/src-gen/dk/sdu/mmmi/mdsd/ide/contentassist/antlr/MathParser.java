@@ -36,9 +36,7 @@ public class MathParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMultiplicationAccess().getAlternatives_1(), "rule__Multiplication__Alternatives_1");
 			builder.put(grammarAccess.getPrimaryAccess().getAlternatives(), "rule__Primary__Alternatives");
 			builder.put(grammarAccess.getMathExpAccess().getGroup(), "rule__MathExp__Group__0");
-			builder.put(grammarAccess.getLetExpAccess().getGroup(), "rule__LetExp__Group__0");
-			builder.put(grammarAccess.getLetExpAccess().getGroup_2(), "rule__LetExp__Group_2__0");
-			builder.put(grammarAccess.getVariableAssignmentAccess().getGroup(), "rule__VariableAssignment__Group__0");
+			builder.put(grammarAccess.getLetExpressionAccess().getGroup(), "rule__LetExpression__Group__0");
 			builder.put(grammarAccess.getAdditionAccess().getGroup(), "rule__Addition__Group__0");
 			builder.put(grammarAccess.getAdditionAccess().getGroup_1_0(), "rule__Addition__Group_1_0__0");
 			builder.put(grammarAccess.getAdditionAccess().getGroup_1_1(), "rule__Addition__Group_1_1__0");
@@ -49,11 +47,9 @@ public class MathParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMathExpAccess().getNameAssignment_1(), "rule__MathExp__NameAssignment_1");
 			builder.put(grammarAccess.getMathExpAccess().getExpAssignment_3(), "rule__MathExp__ExpAssignment_3");
 			builder.put(grammarAccess.getMathExpAccess().getVarsAssignment_4(), "rule__MathExp__VarsAssignment_4");
-			builder.put(grammarAccess.getLetExpAccess().getAssignmentsAssignment_1(), "rule__LetExp__AssignmentsAssignment_1");
-			builder.put(grammarAccess.getLetExpAccess().getAssignmentsAssignment_2_1(), "rule__LetExp__AssignmentsAssignment_2_1");
-			builder.put(grammarAccess.getLetExpAccess().getBodyAssignment_4(), "rule__LetExp__BodyAssignment_4");
-			builder.put(grammarAccess.getVariableAssignmentAccess().getNameAssignment_0(), "rule__VariableAssignment__NameAssignment_0");
-			builder.put(grammarAccess.getVariableAssignmentAccess().getValueAssignment_2(), "rule__VariableAssignment__ValueAssignment_2");
+			builder.put(grammarAccess.getLetExpressionAccess().getNameAssignment_1(), "rule__LetExpression__NameAssignment_1");
+			builder.put(grammarAccess.getLetExpressionAccess().getValueAssignment_3(), "rule__LetExpression__ValueAssignment_3");
+			builder.put(grammarAccess.getLetExpressionAccess().getBodyAssignment_5(), "rule__LetExpression__BodyAssignment_5");
 			builder.put(grammarAccess.getAdditionAccess().getRightAssignment_1_0_2(), "rule__Addition__RightAssignment_1_0_2");
 			builder.put(grammarAccess.getAdditionAccess().getRightAssignment_1_1_2(), "rule__Addition__RightAssignment_1_1_2");
 			builder.put(grammarAccess.getMultiplicationAccess().getRightAssignment_1_0_2(), "rule__Multiplication__RightAssignment_1_0_2");

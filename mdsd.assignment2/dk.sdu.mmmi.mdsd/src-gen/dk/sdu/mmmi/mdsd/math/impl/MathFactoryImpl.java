@@ -5,6 +5,7 @@ package dk.sdu.mmmi.mdsd.math.impl;
 
 import dk.sdu.mmmi.mdsd.math.Div;
 import dk.sdu.mmmi.mdsd.math.Exp;
+import dk.sdu.mmmi.mdsd.math.LetExpression;
 import dk.sdu.mmmi.mdsd.math.MathExp;
 import dk.sdu.mmmi.mdsd.math.MathFactory;
 import dk.sdu.mmmi.mdsd.math.MathPackage;
@@ -13,7 +14,6 @@ import dk.sdu.mmmi.mdsd.math.Mult;
 import dk.sdu.mmmi.mdsd.math.Parenthesis;
 import dk.sdu.mmmi.mdsd.math.Plus;
 import dk.sdu.mmmi.mdsd.math.Primary;
-import dk.sdu.mmmi.mdsd.math.VariableAssignment;
 import dk.sdu.mmmi.mdsd.math.VariableUse;
 
 import org.eclipse.emf.ecore.EClass;
@@ -78,7 +78,7 @@ public class MathFactoryImpl extends EFactoryImpl implements MathFactory
     {
       case MathPackage.MATH_EXP: return createMathExp();
       case MathPackage.EXP: return createExp();
-      case MathPackage.VARIABLE_ASSIGNMENT: return createVariableAssignment();
+      case MathPackage.LET_EXPRESSION: return createLetExpression();
       case MathPackage.PRIMARY: return createPrimary();
       case MathPackage.PARENTHESIS: return createParenthesis();
       case MathPackage.NUMBER: return createNumber();
@@ -122,10 +122,10 @@ public class MathFactoryImpl extends EFactoryImpl implements MathFactory
    * @generated
    */
   @Override
-  public VariableAssignment createVariableAssignment()
+  public LetExpression createLetExpression()
   {
-    VariableAssignmentImpl variableAssignment = new VariableAssignmentImpl();
-    return variableAssignment;
+    LetExpressionImpl letExpression = new LetExpressionImpl();
+    return letExpression;
   }
 
   /**

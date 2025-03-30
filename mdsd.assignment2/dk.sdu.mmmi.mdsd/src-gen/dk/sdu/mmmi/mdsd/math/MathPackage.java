@@ -114,41 +114,23 @@ public interface MathPackage extends EPackage
   int EXP = 1;
 
   /**
-   * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXP__ASSIGNMENTS = 0;
-
-  /**
-   * The feature id for the '<em><b>Body</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXP__BODY = 1;
-
-  /**
    * The number of structural features of the '<em>Exp</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXP_FEATURE_COUNT = 2;
+  int EXP_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link dk.sdu.mmmi.mdsd.math.impl.VariableAssignmentImpl <em>Variable Assignment</em>}' class.
+   * The meta object id for the '{@link dk.sdu.mmmi.mdsd.math.impl.LetExpressionImpl <em>Let Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see dk.sdu.mmmi.mdsd.math.impl.VariableAssignmentImpl
-   * @see dk.sdu.mmmi.mdsd.math.impl.MathPackageImpl#getVariableAssignment()
+   * @see dk.sdu.mmmi.mdsd.math.impl.LetExpressionImpl
+   * @see dk.sdu.mmmi.mdsd.math.impl.MathPackageImpl#getLetExpression()
    * @generated
    */
-  int VARIABLE_ASSIGNMENT = 2;
+  int LET_EXPRESSION = 2;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -157,7 +139,7 @@ public interface MathPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VARIABLE_ASSIGNMENT__NAME = 0;
+  int LET_EXPRESSION__NAME = EXP_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -166,16 +148,25 @@ public interface MathPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VARIABLE_ASSIGNMENT__VALUE = 1;
+  int LET_EXPRESSION__VALUE = EXP_FEATURE_COUNT + 1;
 
   /**
-   * The number of structural features of the '<em>Variable Assignment</em>' class.
+   * The feature id for the '<em><b>Body</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VARIABLE_ASSIGNMENT_FEATURE_COUNT = 2;
+  int LET_EXPRESSION__BODY = EXP_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Let Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LET_EXPRESSION_FEATURE_COUNT = EXP_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link dk.sdu.mmmi.mdsd.math.impl.PrimaryImpl <em>Primary</em>}' class.
@@ -186,24 +177,6 @@ public interface MathPackage extends EPackage
    * @generated
    */
   int PRIMARY = 3;
-
-  /**
-   * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRIMARY__ASSIGNMENTS = EXP__ASSIGNMENTS;
-
-  /**
-   * The feature id for the '<em><b>Body</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRIMARY__BODY = EXP__BODY;
 
   /**
    * The number of structural features of the '<em>Primary</em>' class.
@@ -223,24 +196,6 @@ public interface MathPackage extends EPackage
    * @generated
    */
   int PARENTHESIS = 4;
-
-  /**
-   * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PARENTHESIS__ASSIGNMENTS = PRIMARY__ASSIGNMENTS;
-
-  /**
-   * The feature id for the '<em><b>Body</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PARENTHESIS__BODY = PRIMARY__BODY;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -271,24 +226,6 @@ public interface MathPackage extends EPackage
   int NUMBER = 5;
 
   /**
-   * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NUMBER__ASSIGNMENTS = PRIMARY__ASSIGNMENTS;
-
-  /**
-   * The feature id for the '<em><b>Body</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NUMBER__BODY = PRIMARY__BODY;
-
-  /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -317,24 +254,6 @@ public interface MathPackage extends EPackage
   int VARIABLE_USE = 6;
 
   /**
-   * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VARIABLE_USE__ASSIGNMENTS = PRIMARY__ASSIGNMENTS;
-
-  /**
-   * The feature id for the '<em><b>Body</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VARIABLE_USE__BODY = PRIMARY__BODY;
-
-  /**
    * The feature id for the '<em><b>Ref</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -361,24 +280,6 @@ public interface MathPackage extends EPackage
    * @generated
    */
   int PLUS = 7;
-
-  /**
-   * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PLUS__ASSIGNMENTS = EXP__ASSIGNMENTS;
-
-  /**
-   * The feature id for the '<em><b>Body</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PLUS__BODY = EXP__BODY;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -418,24 +319,6 @@ public interface MathPackage extends EPackage
   int MINUS = 8;
 
   /**
-   * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MINUS__ASSIGNMENTS = EXP__ASSIGNMENTS;
-
-  /**
-   * The feature id for the '<em><b>Body</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MINUS__BODY = EXP__BODY;
-
-  /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -473,24 +356,6 @@ public interface MathPackage extends EPackage
   int MULT = 9;
 
   /**
-   * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MULT__ASSIGNMENTS = EXP__ASSIGNMENTS;
-
-  /**
-   * The feature id for the '<em><b>Body</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MULT__BODY = EXP__BODY;
-
-  /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -526,24 +391,6 @@ public interface MathPackage extends EPackage
    * @generated
    */
   int DIV = 10;
-
-  /**
-   * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DIV__ASSIGNMENTS = EXP__ASSIGNMENTS;
-
-  /**
-   * The feature id for the '<em><b>Body</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DIV__BODY = EXP__BODY;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -627,58 +474,47 @@ public interface MathPackage extends EPackage
   EClass getExp();
 
   /**
-   * Returns the meta object for the containment reference list '{@link dk.sdu.mmmi.mdsd.math.Exp#getAssignments <em>Assignments</em>}'.
+   * Returns the meta object for class '{@link dk.sdu.mmmi.mdsd.math.LetExpression <em>Let Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Assignments</em>'.
-   * @see dk.sdu.mmmi.mdsd.math.Exp#getAssignments()
-   * @see #getExp()
+   * @return the meta object for class '<em>Let Expression</em>'.
+   * @see dk.sdu.mmmi.mdsd.math.LetExpression
    * @generated
    */
-  EReference getExp_Assignments();
+  EClass getLetExpression();
 
   /**
-   * Returns the meta object for the containment reference '{@link dk.sdu.mmmi.mdsd.math.Exp#getBody <em>Body</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Body</em>'.
-   * @see dk.sdu.mmmi.mdsd.math.Exp#getBody()
-   * @see #getExp()
-   * @generated
-   */
-  EReference getExp_Body();
-
-  /**
-   * Returns the meta object for class '{@link dk.sdu.mmmi.mdsd.math.VariableAssignment <em>Variable Assignment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Variable Assignment</em>'.
-   * @see dk.sdu.mmmi.mdsd.math.VariableAssignment
-   * @generated
-   */
-  EClass getVariableAssignment();
-
-  /**
-   * Returns the meta object for the attribute '{@link dk.sdu.mmmi.mdsd.math.VariableAssignment#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link dk.sdu.mmmi.mdsd.math.LetExpression#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see dk.sdu.mmmi.mdsd.math.VariableAssignment#getName()
-   * @see #getVariableAssignment()
+   * @see dk.sdu.mmmi.mdsd.math.LetExpression#getName()
+   * @see #getLetExpression()
    * @generated
    */
-  EAttribute getVariableAssignment_Name();
+  EAttribute getLetExpression_Name();
 
   /**
-   * Returns the meta object for the containment reference '{@link dk.sdu.mmmi.mdsd.math.VariableAssignment#getValue <em>Value</em>}'.
+   * Returns the meta object for the containment reference '{@link dk.sdu.mmmi.mdsd.math.LetExpression#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Value</em>'.
-   * @see dk.sdu.mmmi.mdsd.math.VariableAssignment#getValue()
-   * @see #getVariableAssignment()
+   * @see dk.sdu.mmmi.mdsd.math.LetExpression#getValue()
+   * @see #getLetExpression()
    * @generated
    */
-  EReference getVariableAssignment_Value();
+  EReference getLetExpression_Value();
+
+  /**
+   * Returns the meta object for the containment reference '{@link dk.sdu.mmmi.mdsd.math.LetExpression#getBody <em>Body</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Body</em>'.
+   * @see dk.sdu.mmmi.mdsd.math.LetExpression#getBody()
+   * @see #getLetExpression()
+   * @generated
+   */
+  EReference getLetExpression_Body();
 
   /**
    * Returns the meta object for class '{@link dk.sdu.mmmi.mdsd.math.Primary <em>Primary</em>}'.
@@ -949,30 +785,14 @@ public interface MathPackage extends EPackage
     EClass EXP = eINSTANCE.getExp();
 
     /**
-     * The meta object literal for the '<em><b>Assignments</b></em>' containment reference list feature.
+     * The meta object literal for the '{@link dk.sdu.mmmi.mdsd.math.impl.LetExpressionImpl <em>Let Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see dk.sdu.mmmi.mdsd.math.impl.LetExpressionImpl
+     * @see dk.sdu.mmmi.mdsd.math.impl.MathPackageImpl#getLetExpression()
      * @generated
      */
-    EReference EXP__ASSIGNMENTS = eINSTANCE.getExp_Assignments();
-
-    /**
-     * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXP__BODY = eINSTANCE.getExp_Body();
-
-    /**
-     * The meta object literal for the '{@link dk.sdu.mmmi.mdsd.math.impl.VariableAssignmentImpl <em>Variable Assignment</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see dk.sdu.mmmi.mdsd.math.impl.VariableAssignmentImpl
-     * @see dk.sdu.mmmi.mdsd.math.impl.MathPackageImpl#getVariableAssignment()
-     * @generated
-     */
-    EClass VARIABLE_ASSIGNMENT = eINSTANCE.getVariableAssignment();
+    EClass LET_EXPRESSION = eINSTANCE.getLetExpression();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -980,7 +800,7 @@ public interface MathPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute VARIABLE_ASSIGNMENT__NAME = eINSTANCE.getVariableAssignment_Name();
+    EAttribute LET_EXPRESSION__NAME = eINSTANCE.getLetExpression_Name();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
@@ -988,7 +808,15 @@ public interface MathPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference VARIABLE_ASSIGNMENT__VALUE = eINSTANCE.getVariableAssignment_Value();
+    EReference LET_EXPRESSION__VALUE = eINSTANCE.getLetExpression_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LET_EXPRESSION__BODY = eINSTANCE.getLetExpression_Body();
 
     /**
      * The meta object literal for the '{@link dk.sdu.mmmi.mdsd.math.impl.PrimaryImpl <em>Primary</em>}' class.
