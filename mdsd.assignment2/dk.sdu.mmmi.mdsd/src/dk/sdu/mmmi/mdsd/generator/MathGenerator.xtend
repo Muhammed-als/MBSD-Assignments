@@ -53,7 +53,7 @@ class MathGenerator extends AbstractGenerator {
         // Recursively process nested MathExp elements
         if (math.vars !== null && !math.vars.empty) {
             for (MathExp varExp : math.vars) {
-                compute(varExp) // Recursively call compute
+                val _ = compute(varExp) // Recursively call compute
             }
         }
         
@@ -76,7 +76,7 @@ class MathGenerator extends AbstractGenerator {
             
             if (math.vars !== null && !math.vars.empty) {
                 for (MathExp varExp : math.vars) {
-                    compute(varExp)
+                    val _ = compute(varExp)
                 }
             }
         }

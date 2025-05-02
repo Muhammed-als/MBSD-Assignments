@@ -5,7 +5,6 @@ package dk.sdu.mmmi.mdsd.math.util;
 
 import dk.sdu.mmmi.mdsd.math.Div;
 import dk.sdu.mmmi.mdsd.math.Exp;
-import dk.sdu.mmmi.mdsd.math.LetExpression;
 import dk.sdu.mmmi.mdsd.math.MathExp;
 import dk.sdu.mmmi.mdsd.math.MathPackage;
 import dk.sdu.mmmi.mdsd.math.Minus;
@@ -94,14 +93,6 @@ public class MathSwitch<T> extends Switch<T>
       {
         Exp exp = (Exp)theEObject;
         T result = caseExp(exp);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MathPackage.LET_EXPRESSION:
-      {
-        LetExpression letExpression = (LetExpression)theEObject;
-        T result = caseLetExpression(letExpression);
-        if (result == null) result = caseExp(letExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -204,22 +195,6 @@ public class MathSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExp(Exp object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Let Expression</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Let Expression</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseLetExpression(LetExpression object)
   {
     return null;
   }

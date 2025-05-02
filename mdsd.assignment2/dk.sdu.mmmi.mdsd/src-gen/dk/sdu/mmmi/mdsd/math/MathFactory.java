@@ -42,15 +42,6 @@ public interface MathFactory extends EFactory
   Exp createExp();
 
   /**
-   * Returns a new object of class '<em>Let Expression</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Let Expression</em>'.
-   * @generated
-   */
-  LetExpression createLetExpression();
-
-  /**
    * Returns a new object of class '<em>Primary</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -5,7 +5,6 @@ package dk.sdu.mmmi.mdsd.math.util;
 
 import dk.sdu.mmmi.mdsd.math.Div;
 import dk.sdu.mmmi.mdsd.math.Exp;
-import dk.sdu.mmmi.mdsd.math.LetExpression;
 import dk.sdu.mmmi.mdsd.math.MathExp;
 import dk.sdu.mmmi.mdsd.math.MathPackage;
 import dk.sdu.mmmi.mdsd.math.Minus;
@@ -96,11 +95,6 @@ public class MathAdapterFactory extends AdapterFactoryImpl
         return createExpAdapter();
       }
       @Override
-      public Adapter caseLetExpression(LetExpression object)
-      {
-        return createLetExpressionAdapter();
-      }
-      @Override
       public Adapter casePrimary(Primary object)
       {
         return createPrimaryAdapter();
@@ -188,21 +182,6 @@ public class MathAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExpAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link dk.sdu.mmmi.mdsd.math.LetExpression <em>Let Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see dk.sdu.mmmi.mdsd.math.LetExpression
-   * @generated
-   */
-  public Adapter createLetExpressionAdapter()
   {
     return null;
   }

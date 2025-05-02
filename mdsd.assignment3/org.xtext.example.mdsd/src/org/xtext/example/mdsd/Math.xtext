@@ -1,0 +1,52 @@
+grammar org.xtext.example.mdsd.Math with org.eclipse.xtext.common.Terminals
+
+generate math "http://www.xtext.org/example/mdsd/Math"
+
+MathExp:
+    'program' name=ID
+    (externals += ExternalDecl)*
+    (variables += VarBinding)*
+;
+
+ExternalDecl:
+    'external' name=ID '(' (parameters+=Type (',' parameters+=Type)*)? ')'
+;
+
+Type:
+    'int'
+;
+
+VarBinding:
+	'var' name=ID '=' expression=Exp
+;
+
+Exp returns Expression:
+	Factor (( {Plus.left=current} '+' | {Minus.left=current}  '-' ) right=Factor)*
+;
+
+Factor returns Expression:
+	Primary (({Mult.left=current} '*' | {Div.left=current}  '/'  ) right=Primary)*
+;
+
+Primary returns Expression:
+	{MathNumber} value=INT  | 
+	'(' Exp ')'  |  
+	VariableUse | 
+	LetBinding | 
+	FunctionCall
+;
+
+LetBinding:
+	'let' name=ID '=' binding=Exp 'in' body=Exp 'end'
+;
+FunctionCall:
+    name=[ExternalDecl] '(' (arguments+=Exp (',' arguments+=Exp)*)? ')'
+;
+
+Binding:
+	VarBinding | LetBinding
+;
+
+VariableUse:
+	ref = [Binding]
+;

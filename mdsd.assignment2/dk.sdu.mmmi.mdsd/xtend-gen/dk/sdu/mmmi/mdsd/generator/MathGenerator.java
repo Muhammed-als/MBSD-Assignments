@@ -59,7 +59,7 @@ public class MathGenerator extends AbstractGenerator {
     if (((math.getVars() != null) && (!math.getVars().isEmpty()))) {
       EList<MathExp> _vars = math.getVars();
       for (final MathExp varExp : _vars) {
-        MathGenerator.compute(varExp);
+        final Map<String, Integer> __ = MathGenerator.compute(varExp);
       }
     }
     return MathGenerator.variables;
@@ -81,7 +81,7 @@ public class MathGenerator extends AbstractGenerator {
         if (((math.getVars() != null) && (!math.getVars().isEmpty()))) {
           EList<MathExp> _vars = math.getVars();
           for (final MathExp varExp : _vars) {
-            MathGenerator.compute(varExp);
+            final Map<String, Integer> __ = MathGenerator.compute(varExp);
           }
         }
       }

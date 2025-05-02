@@ -31,12 +31,10 @@ public class MathParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, MathGrammarAccess grammarAccess) {
-			builder.put(grammarAccess.getExpAccess().getAlternatives(), "rule__Exp__Alternatives");
 			builder.put(grammarAccess.getAdditionAccess().getAlternatives_1(), "rule__Addition__Alternatives_1");
 			builder.put(grammarAccess.getMultiplicationAccess().getAlternatives_1(), "rule__Multiplication__Alternatives_1");
 			builder.put(grammarAccess.getPrimaryAccess().getAlternatives(), "rule__Primary__Alternatives");
 			builder.put(grammarAccess.getMathExpAccess().getGroup(), "rule__MathExp__Group__0");
-			builder.put(grammarAccess.getLetExpressionAccess().getGroup(), "rule__LetExpression__Group__0");
 			builder.put(grammarAccess.getAdditionAccess().getGroup(), "rule__Addition__Group__0");
 			builder.put(grammarAccess.getAdditionAccess().getGroup_1_0(), "rule__Addition__Group_1_0__0");
 			builder.put(grammarAccess.getAdditionAccess().getGroup_1_1(), "rule__Addition__Group_1_1__0");
@@ -47,9 +45,6 @@ public class MathParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMathExpAccess().getNameAssignment_1(), "rule__MathExp__NameAssignment_1");
 			builder.put(grammarAccess.getMathExpAccess().getExpAssignment_3(), "rule__MathExp__ExpAssignment_3");
 			builder.put(grammarAccess.getMathExpAccess().getVarsAssignment_4(), "rule__MathExp__VarsAssignment_4");
-			builder.put(grammarAccess.getLetExpressionAccess().getNameAssignment_1(), "rule__LetExpression__NameAssignment_1");
-			builder.put(grammarAccess.getLetExpressionAccess().getValueAssignment_3(), "rule__LetExpression__ValueAssignment_3");
-			builder.put(grammarAccess.getLetExpressionAccess().getBodyAssignment_5(), "rule__LetExpression__BodyAssignment_5");
 			builder.put(grammarAccess.getAdditionAccess().getRightAssignment_1_0_2(), "rule__Addition__RightAssignment_1_0_2");
 			builder.put(grammarAccess.getAdditionAccess().getRightAssignment_1_1_2(), "rule__Addition__RightAssignment_1_1_2");
 			builder.put(grammarAccess.getMultiplicationAccess().getRightAssignment_1_0_2(), "rule__Multiplication__RightAssignment_1_0_2");

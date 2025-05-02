@@ -5,7 +5,6 @@ package dk.sdu.mmmi.mdsd.math.impl;
 
 import dk.sdu.mmmi.mdsd.math.Div;
 import dk.sdu.mmmi.mdsd.math.Exp;
-import dk.sdu.mmmi.mdsd.math.LetExpression;
 import dk.sdu.mmmi.mdsd.math.MathExp;
 import dk.sdu.mmmi.mdsd.math.MathFactory;
 import dk.sdu.mmmi.mdsd.math.MathPackage;
@@ -44,13 +43,6 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
    * @generated
    */
   private EClass expEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass letExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -223,50 +215,6 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
   public EClass getExp()
   {
     return expEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getLetExpression()
-  {
-    return letExpressionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getLetExpression_Name()
-  {
-    return (EAttribute)letExpressionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getLetExpression_Value()
-  {
-    return (EReference)letExpressionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getLetExpression_Body()
-  {
-    return (EReference)letExpressionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -516,11 +464,6 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
 
     expEClass = createEClass(EXP);
 
-    letExpressionEClass = createEClass(LET_EXPRESSION);
-    createEAttribute(letExpressionEClass, LET_EXPRESSION__NAME);
-    createEReference(letExpressionEClass, LET_EXPRESSION__VALUE);
-    createEReference(letExpressionEClass, LET_EXPRESSION__BODY);
-
     primaryEClass = createEClass(PRIMARY);
 
     parenthesisEClass = createEClass(PARENTHESIS);
@@ -578,7 +521,6 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    letExpressionEClass.getESuperTypes().add(this.getExp());
     primaryEClass.getESuperTypes().add(this.getExp());
     parenthesisEClass.getESuperTypes().add(this.getPrimary());
     numberEClass.getESuperTypes().add(this.getPrimary());
@@ -595,11 +537,6 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
     initEReference(getMathExp_Vars(), this.getMathExp(), null, "vars", null, 0, -1, MathExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expEClass, Exp.class, "Exp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(letExpressionEClass, LetExpression.class, "LetExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLetExpression_Name(), ecorePackage.getEString(), "name", null, 0, 1, LetExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getLetExpression_Value(), this.getExp(), null, "value", null, 0, 1, LetExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getLetExpression_Body(), this.getExp(), null, "body", null, 0, 1, LetExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(primaryEClass, Primary.class, "Primary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

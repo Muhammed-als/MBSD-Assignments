@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.xtext.example.mdsd
+Bundle-ManifestVersion: 2
+Bundle-Name: org.xtext.example.mdsd
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.xtext.example.mdsd; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.19.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.38.0",
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Export-Package: org.xtext.example.mdsd.math.impl,
+ org.xtext.example.mdsd.services,
+ org.xtext.example.mdsd.parser.antlr.internal,
+ org.xtext.example.mdsd.generator,
+ org.xtext.example.mdsd.parser.antlr,
+ org.xtext.example.mdsd,
+ org.xtext.example.mdsd.math.util,
+ org.xtext.example.mdsd.serializer,
+ org.xtext.example.mdsd.scoping,
+ org.xtext.example.mdsd.validation,
+ org.xtext.example.mdsd.math
+Import-Package: org.apache.log4j

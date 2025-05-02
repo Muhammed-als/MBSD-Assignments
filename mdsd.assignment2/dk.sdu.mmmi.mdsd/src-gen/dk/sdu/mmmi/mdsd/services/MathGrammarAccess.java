@@ -71,75 +71,15 @@ public class MathGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	public class ExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dk.sdu.mmmi.mdsd.Math.Exp");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cLetExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cAdditionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cAdditionParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//Exp:
-		//    LetExpression | Addition
+		//    Addition
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//LetExpression | Addition
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//LetExpression
-		public RuleCall getLetExpressionParserRuleCall_0() { return cLetExpressionParserRuleCall_0; }
-		
 		//Addition
-		public RuleCall getAdditionParserRuleCall_1() { return cAdditionParserRuleCall_1; }
-	}
-	public class LetExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dk.sdu.mmmi.mdsd.Math.LetExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLetKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cValueAdditionParserRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
-		private final Keyword cInKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cBodyAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cBodyExpParserRuleCall_5_0 = (RuleCall)cBodyAssignment_5.eContents().get(0);
-		private final Keyword cEndKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		
-		//LetExpression:
-		//    'let' name=ID '=' value=Addition 'in' body=Exp 'end'
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'let' name=ID '=' value=Addition 'in' body=Exp 'end'
-		public Group getGroup() { return cGroup; }
-		
-		//'let'
-		public Keyword getLetKeyword_0() { return cLetKeyword_0; }
-		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
-		
-		//'='
-		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
-		
-		//value=Addition
-		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
-		
-		//Addition
-		public RuleCall getValueAdditionParserRuleCall_3_0() { return cValueAdditionParserRuleCall_3_0; }
-		
-		//'in'
-		public Keyword getInKeyword_4() { return cInKeyword_4; }
-		
-		//body=Exp
-		public Assignment getBodyAssignment_5() { return cBodyAssignment_5; }
-		
-		//Exp
-		public RuleCall getBodyExpParserRuleCall_5_0() { return cBodyExpParserRuleCall_5_0; }
-		
-		//'end'
-		public Keyword getEndKeyword_6() { return cEndKeyword_6; }
+		public RuleCall getAdditionParserRuleCall() { return cAdditionParserRuleCall; }
 	}
 	public class AdditionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dk.sdu.mmmi.mdsd.Math.Addition");
@@ -375,7 +315,6 @@ public class MathGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	
 	private final MathExpElements pMathExp;
 	private final ExpElements pExp;
-	private final LetExpressionElements pLetExpression;
 	private final AdditionElements pAddition;
 	private final MultiplicationElements pMultiplication;
 	private final PrimaryElements pPrimary;
@@ -394,7 +333,6 @@ public class MathGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		this.gaTerminals = gaTerminals;
 		this.pMathExp = new MathExpElements();
 		this.pExp = new ExpElements();
-		this.pLetExpression = new LetExpressionElements();
 		this.pAddition = new AdditionElements();
 		this.pMultiplication = new MultiplicationElements();
 		this.pPrimary = new PrimaryElements();
@@ -443,7 +381,7 @@ public class MathGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Exp:
-	//    LetExpression | Addition
+	//    Addition
 	//;
 	public ExpElements getExpAccess() {
 		return pExp;
@@ -451,17 +389,6 @@ public class MathGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	
 	public ParserRule getExpRule() {
 		return getExpAccess().getRule();
-	}
-	
-	//LetExpression:
-	//    'let' name=ID '=' value=Addition 'in' body=Exp 'end'
-	//;
-	public LetExpressionElements getLetExpressionAccess() {
-		return pLetExpression;
-	}
-	
-	public ParserRule getLetExpressionRule() {
-		return getLetExpressionAccess().getRule();
 	}
 	
 	///*

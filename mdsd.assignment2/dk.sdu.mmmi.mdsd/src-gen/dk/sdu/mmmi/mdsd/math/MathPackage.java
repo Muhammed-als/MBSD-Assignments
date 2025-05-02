@@ -123,52 +123,6 @@ public interface MathPackage extends EPackage
   int EXP_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link dk.sdu.mmmi.mdsd.math.impl.LetExpressionImpl <em>Let Expression</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see dk.sdu.mmmi.mdsd.math.impl.LetExpressionImpl
-   * @see dk.sdu.mmmi.mdsd.math.impl.MathPackageImpl#getLetExpression()
-   * @generated
-   */
-  int LET_EXPRESSION = 2;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LET_EXPRESSION__NAME = EXP_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Value</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LET_EXPRESSION__VALUE = EXP_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Body</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LET_EXPRESSION__BODY = EXP_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Let Expression</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LET_EXPRESSION_FEATURE_COUNT = EXP_FEATURE_COUNT + 3;
-
-  /**
    * The meta object id for the '{@link dk.sdu.mmmi.mdsd.math.impl.PrimaryImpl <em>Primary</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -176,7 +130,7 @@ public interface MathPackage extends EPackage
    * @see dk.sdu.mmmi.mdsd.math.impl.MathPackageImpl#getPrimary()
    * @generated
    */
-  int PRIMARY = 3;
+  int PRIMARY = 2;
 
   /**
    * The number of structural features of the '<em>Primary</em>' class.
@@ -195,7 +149,7 @@ public interface MathPackage extends EPackage
    * @see dk.sdu.mmmi.mdsd.math.impl.MathPackageImpl#getParenthesis()
    * @generated
    */
-  int PARENTHESIS = 4;
+  int PARENTHESIS = 3;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -223,7 +177,7 @@ public interface MathPackage extends EPackage
    * @see dk.sdu.mmmi.mdsd.math.impl.MathPackageImpl#getNumber()
    * @generated
    */
-  int NUMBER = 5;
+  int NUMBER = 4;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -251,7 +205,7 @@ public interface MathPackage extends EPackage
    * @see dk.sdu.mmmi.mdsd.math.impl.MathPackageImpl#getVariableUse()
    * @generated
    */
-  int VARIABLE_USE = 6;
+  int VARIABLE_USE = 5;
 
   /**
    * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -279,7 +233,7 @@ public interface MathPackage extends EPackage
    * @see dk.sdu.mmmi.mdsd.math.impl.MathPackageImpl#getPlus()
    * @generated
    */
-  int PLUS = 7;
+  int PLUS = 6;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -316,7 +270,7 @@ public interface MathPackage extends EPackage
    * @see dk.sdu.mmmi.mdsd.math.impl.MathPackageImpl#getMinus()
    * @generated
    */
-  int MINUS = 8;
+  int MINUS = 7;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -353,7 +307,7 @@ public interface MathPackage extends EPackage
    * @see dk.sdu.mmmi.mdsd.math.impl.MathPackageImpl#getMult()
    * @generated
    */
-  int MULT = 9;
+  int MULT = 8;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -390,7 +344,7 @@ public interface MathPackage extends EPackage
    * @see dk.sdu.mmmi.mdsd.math.impl.MathPackageImpl#getDiv()
    * @generated
    */
-  int DIV = 10;
+  int DIV = 9;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -472,49 +426,6 @@ public interface MathPackage extends EPackage
    * @generated
    */
   EClass getExp();
-
-  /**
-   * Returns the meta object for class '{@link dk.sdu.mmmi.mdsd.math.LetExpression <em>Let Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Let Expression</em>'.
-   * @see dk.sdu.mmmi.mdsd.math.LetExpression
-   * @generated
-   */
-  EClass getLetExpression();
-
-  /**
-   * Returns the meta object for the attribute '{@link dk.sdu.mmmi.mdsd.math.LetExpression#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see dk.sdu.mmmi.mdsd.math.LetExpression#getName()
-   * @see #getLetExpression()
-   * @generated
-   */
-  EAttribute getLetExpression_Name();
-
-  /**
-   * Returns the meta object for the containment reference '{@link dk.sdu.mmmi.mdsd.math.LetExpression#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Value</em>'.
-   * @see dk.sdu.mmmi.mdsd.math.LetExpression#getValue()
-   * @see #getLetExpression()
-   * @generated
-   */
-  EReference getLetExpression_Value();
-
-  /**
-   * Returns the meta object for the containment reference '{@link dk.sdu.mmmi.mdsd.math.LetExpression#getBody <em>Body</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Body</em>'.
-   * @see dk.sdu.mmmi.mdsd.math.LetExpression#getBody()
-   * @see #getLetExpression()
-   * @generated
-   */
-  EReference getLetExpression_Body();
 
   /**
    * Returns the meta object for class '{@link dk.sdu.mmmi.mdsd.math.Primary <em>Primary</em>}'.
@@ -783,40 +694,6 @@ public interface MathPackage extends EPackage
      * @generated
      */
     EClass EXP = eINSTANCE.getExp();
-
-    /**
-     * The meta object literal for the '{@link dk.sdu.mmmi.mdsd.math.impl.LetExpressionImpl <em>Let Expression</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see dk.sdu.mmmi.mdsd.math.impl.LetExpressionImpl
-     * @see dk.sdu.mmmi.mdsd.math.impl.MathPackageImpl#getLetExpression()
-     * @generated
-     */
-    EClass LET_EXPRESSION = eINSTANCE.getLetExpression();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LET_EXPRESSION__NAME = eINSTANCE.getLetExpression_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LET_EXPRESSION__VALUE = eINSTANCE.getLetExpression_Value();
-
-    /**
-     * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LET_EXPRESSION__BODY = eINSTANCE.getLetExpression_Body();
 
     /**
      * The meta object literal for the '{@link dk.sdu.mmmi.mdsd.math.impl.PrimaryImpl <em>Primary</em>}' class.

@@ -5,7 +5,6 @@ package dk.sdu.mmmi.mdsd.math.impl;
 
 import dk.sdu.mmmi.mdsd.math.Div;
 import dk.sdu.mmmi.mdsd.math.Exp;
-import dk.sdu.mmmi.mdsd.math.LetExpression;
 import dk.sdu.mmmi.mdsd.math.MathExp;
 import dk.sdu.mmmi.mdsd.math.MathFactory;
 import dk.sdu.mmmi.mdsd.math.MathPackage;
@@ -78,7 +77,6 @@ public class MathFactoryImpl extends EFactoryImpl implements MathFactory
     {
       case MathPackage.MATH_EXP: return createMathExp();
       case MathPackage.EXP: return createExp();
-      case MathPackage.LET_EXPRESSION: return createLetExpression();
       case MathPackage.PRIMARY: return createPrimary();
       case MathPackage.PARENTHESIS: return createParenthesis();
       case MathPackage.NUMBER: return createNumber();
@@ -114,18 +112,6 @@ public class MathFactoryImpl extends EFactoryImpl implements MathFactory
   {
     ExpImpl exp = new ExpImpl();
     return exp;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public LetExpression createLetExpression()
-  {
-    LetExpressionImpl letExpression = new LetExpressionImpl();
-    return letExpression;
   }
 
   /**
