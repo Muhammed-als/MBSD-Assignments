@@ -1,0 +1,100 @@
+system MedicalSystem
+type DroneTypes = {
+	droneNmae: string,
+	ip: string,
+	serialNumber: string | number
+}
+type ActionTypes = {
+	actionName: string,
+	description: string,
+	actionType: string
+}
+
+type DroneGroupTypes = {
+	droneGroupName: string,
+	drones: DroneTypes[]
+}
+
+type ConstraintTypes = {
+	constraintName: string,
+	description: string
+}
+
+type MissionTypes = {
+	missionName: string,
+	droneGroup: DroneGroupTypes,
+	actions: ActionTypes[],
+	constraints: ConstraintTypes[]
+}
+
+type RelationTypes = {
+	relationName: string,
+	from: DroneTypes | ActionTypes | DroneGroupTypes  | MissionTypes,
+	to: DroneTypes | ActionTypes | DroneGroupTypes | ConstraintTypes | MissionTypes,
+	relationType: string
+}
+
+var droneAlpha: DroneTypes = {
+	droneName: "droneAlpha",
+	ip: "127.0.0.1",
+	serialNumber: "SN1"
+}
+
+var droneBeta : DroneTypes = {
+	droneName: "droneBeta",
+	ip: "127.0.0.1",
+	serialNumber: "SN2"
+}
+
+var droneGroupAlpha : DroneGroupTypes = {
+	droneGroupName: "droneGroupAlpha",
+	drones: [droneAlpha, droneBeta]
+}
+
+var firstAction: ActionTypes = {
+	actionName: "firstAction",
+	description: "Description",
+	actionType: "Scan"
+}
+
+var firstConstraint: ConstraintTypes = {
+	constraintName: "firstConstraint",
+	description: "Description"
+}
+
+var firstPermissionConstraint: ConstraintTypes = {
+	constraintName: "firstPermissionConstraint",
+	description: "Description"
+}
+
+var firstRegulatoryConstraint: ConstraintTypes = {
+	constraintName: "firstRegulatoryConstraint",
+	description: "Description"
+}
+
+var betaMission: MissionTypes = {
+	missionName: "BetaMission",
+	droneGroup:  droneGroupAlpha,
+	actions: [firstAction]
+}
+
+var alphaMission: MissionTypes = {
+	missionName: "alphaMission",
+	droneGroup:  droneGroupAlpha,
+	actions: [firstAction, betaMission]
+}
+
+var inheritSafetyConstraint: RelationTypes = {
+	relationName: "inheritSafetyConstraint",
+	from: firstPermissionConstraint,
+	to: firstConstraint,
+	relationType: "Inherits"
+}
+
+var inheritRegulatoryConstraint: RelationTypes = {
+	relationName: "inheritRegulatoryConstraint",
+	from: firstRegulatoryConstraint,
+	to: firstConstraint,
+	relationType: "Inherits"
+}
+

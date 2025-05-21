@@ -1,0 +1,68 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+// missing tpyeValidaiton impelemtation file
+// missing code gerenrator impleemntation
+Model:
+    'system' name=ID
+    (types+=TypeDef)*
+    (vars+=VarDef)*;
+
+TypeDef:
+    'type' name=ID '=' '{' (fields+=Field (',' fields+=Field)*)? '}';
+
+Field:
+    name=ID ':' type=FieldType
+;
+
+FieldType:
+    union=UnionType array?='[]'?
+;
+
+UnionType:
+    types+=SimpleType ('|' types+=SimpleType)*
+;
+
+SimpleType:
+    PrimitiveType | RefType
+;
+
+PrimitiveType:
+    value=('string' | 'number') // Feature 'value' will hold "string" or "number"
+;
+    
+RefType:
+	type=[TypeDef] // Feature 'type' (cross-reference)
+;
+
+VarDef:
+    'var' name=ID ':' type=[TypeDef] '=' value=StructValue;
+
+StructValue:
+    '{' (entries+=FieldValue (',' entries+=FieldValue)*)? '}';
+
+FieldValue:
+    name=ID ':' value=Value
+;
+
+Value:
+    Literal
+    | VarRef
+    | ArrayValue
+    | StructValue
+;
+
+VarRef:
+    ref=[VarDef]
+;
+ArrayValue:
+    '[' (elements+=Value (',' elements+=Value)*)? ']';
+
+Literal:
+    StringLiteral | NumberLiteral;
+
+StringLiteral:
+    value=STRING;
+
+NumberLiteral:
+    value=INT;
