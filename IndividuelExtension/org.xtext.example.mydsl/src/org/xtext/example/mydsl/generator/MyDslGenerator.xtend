@@ -40,18 +40,24 @@ class MyDslGenerator extends AbstractGenerator {
 		val model = resource.contents.head as Model
 		val systemName = model.name
 		val basePath = systemName + "/"
-		// Generate type files
+		// Generate a separate .ts file for each type definition
 		for (type : model.types) {
 			val typeFile = basePath + type.name + ".ts"
 			fsa.generateFile(typeFile, generateTypeScript(type))
 		}
-		
-		// Generate a single main.ts file
+		// Generate a main.ts file that contains variable declarations and console logs
 		val mainFile = basePath + "main.ts"
 		fsa.generateFile(mainFile, generateMainTs(model))
 		
 	}
-	
+	/**
+	 * Generates a TypeScript type definition from a TypeDef.
+	 * Example output:
+	 * export type MyType = {
+	 *   field1: string;
+	 *   field2: number[];
+	 * }
+	 */
 	def CharSequence generateTypeScript(TypeDef type) '''
 		export type «type.name» = {
 		«FOR field : type.fields»
@@ -59,34 +65,38 @@ class MyDslGenerator extends AbstractGenerator {
 		«ENDFOR»
 		}
 	'''
-	
+	/**
+	 * Converts a FieldType from the DSL to a valid TypeScript type.
+	 * Supports unions and array types.
+	 * Example: string | number[]
+	 */
 	def String toTypeScriptType(FieldType ft) {
-        val types = ft.union.types // This is an EList<SimpleType>
-        val baseType = types.map [ st | // st is an instance of SimpleType (which will be PrimitiveType or RefType)
-            // Use a switch statement to dispatch based on the actual concrete type of st
+        val types = ft.union.types
+        val baseType = types.map [ st |
+          
             switch st {
-                // Case for when st is an instance of your DSL's PrimitiveType
                 PrimitiveType:
-                    // Cast 'st' to PrimitiveType to access its 'value' feature
-                    (st as PrimitiveType).value
-                // Case for when st is an instance of your DSL's RefType
+                    (st as PrimitiveType).value // e.g "string or "number"
                 RefType:
-                    // Cast 'st' to RefType to access its 'type' feature
-                    (st as RefType).type.name
+                    (st as RefType).type.name // reference to a custom type
                 default:
-                    // This should ideally not be reached if the model is valid
-                    // and st is always either a PrimitiveType or a RefType.
                     "/*error:Unknown_SimpleType_subtype*/any"
             }
-        ].join(" | ")
+        ].join(" | ") // Join multiple types using TypeScript's union syntax
 
         if (ft.array) baseType + "[]" else baseType
     }
-	
+    
+	/**
+	 * Generates the contents of main.ts:
+	 * - Imports all used types
+	 * - Declares all variables
+	 * - Logs all variables
+	 */
 	def CharSequence generateMainTs(Model model) {
 		val typeImports = new LinkedHashSet<String>()
-		val variables = model.vars.map [ generateVariableDeclaration(it, typeImports) ]
-		val logs = model.vars.map [ '''console.log(«name»);''' ]
+		val variables = model.vars.map [ generateVariableDeclaration(it, typeImports) ] // Generate var declarations
+		val logs = model.vars.map [ '''console.log(«name»);''' ] // Generate simple console logs
 
 		'''
 		«FOR t : typeImports»
@@ -103,12 +113,24 @@ class MyDslGenerator extends AbstractGenerator {
 		'''
 	}
 	
+	/**
+	 * Generates a TypeScript variable declaration line.
+	 * Example: export const myVar: MyType = { ... };
+	 */
 	def CharSequence generateVariableDeclaration(VarDef v, Set<String> imports) {
 		imports.add(v.type.name)
 		val valueStr = v.value.toJsonString
 		'''export const «v.name»: «v.type.name» = «valueStr»;'''
 	}
 	
+	/**
+	 * Recursively converts a DSL Value to a TypeScript/JSON-compatible string.
+	 * Supports:
+	 * - String and number literals
+	 * - Struct (object) values
+	 * - Var references
+	 * - Arrays of values
+	 */
 	def CharSequence toJsonString(Value value) {
 		switch value {
 			Literal: switch value {

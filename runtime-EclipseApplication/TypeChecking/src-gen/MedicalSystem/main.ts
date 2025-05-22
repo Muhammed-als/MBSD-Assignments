@@ -25,11 +25,15 @@ export const firstRegulatoryConstraint: ConstraintTypes = {
 export const betaMission: MissionTypes = {
 				missionName: "BetaMission", droneGroup: droneGroupAlpha, actions: [
 								firstAction
+							], constraints: [
+								firstPermissionConstraint, firstRegulatoryConstraint
 							]
 			};
 export const alphaMission: MissionTypes = {
 				missionName: "alphaMission", droneGroup: droneGroupAlpha, actions: [
-								firstAction, betaMission
+								firstAction
+							], constraints: [
+								firstPermissionConstraint, firstRegulatoryConstraint
 							]
 			};
 export const inheritSafetyConstraint: RelationTypes = {

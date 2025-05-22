@@ -59,6 +59,14 @@ public class MyDslGenerator extends AbstractGenerator {
     fsa.generateFile(mainFile, this.generateMainTs(model));
   }
 
+  /**
+   * Generates a TypeScript type definition from a TypeDef.
+   * Example output:
+   * export type MyType = {
+   *   field1: string;
+   *   field2: number[];
+   * }
+   */
   public CharSequence generateTypeScript(final TypeDef type) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("export type ");
@@ -82,6 +90,11 @@ public class MyDslGenerator extends AbstractGenerator {
     return _builder;
   }
 
+  /**
+   * Converts a FieldType from the DSL to a valid TypeScript type.
+   * Supports unions and array types.
+   * Example: string | number[]
+   */
   public String toTypeScriptType(final FieldType ft) {
     String _xblockexpression = null;
     {
@@ -117,6 +130,12 @@ public class MyDslGenerator extends AbstractGenerator {
     return _xblockexpression;
   }
 
+  /**
+   * Generates the contents of main.ts:
+   * - Imports all used types
+   * - Declares all variables
+   * - Logs all variables
+   */
   public CharSequence generateMainTs(final Model model) {
     CharSequence _xblockexpression = null;
     {
@@ -164,6 +183,10 @@ public class MyDslGenerator extends AbstractGenerator {
     return _xblockexpression;
   }
 
+  /**
+   * Generates a TypeScript variable declaration line.
+   * Example: export const myVar: MyType = { ... };
+   */
   public CharSequence generateVariableDeclaration(final VarDef v, final Set<String> imports) {
     CharSequence _xblockexpression = null;
     {
@@ -184,6 +207,14 @@ public class MyDslGenerator extends AbstractGenerator {
     return _xblockexpression;
   }
 
+  /**
+   * Recursively converts a DSL Value to a TypeScript/JSON-compatible string.
+   * Supports:
+   * - String and number literals
+   * - Struct (object) values
+   * - Var references
+   * - Arrays of values
+   */
   public CharSequence toJsonString(final Value value) {
     CharSequence _switchResult = null;
     boolean _matched = false;

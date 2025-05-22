@@ -1,5 +1,5 @@
 export type DroneTypes = {
-droneNmae: string
+droneName: string
 ip: string
 serialNumber: string | number
 }

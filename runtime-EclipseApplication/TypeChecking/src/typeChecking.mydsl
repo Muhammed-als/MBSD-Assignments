@@ -1,6 +1,6 @@
 system MedicalSystem
 type DroneTypes = {
-	droneNmae: string,
+	droneName: string,
 	ip: string,
 	serialNumber: string | number
 }
@@ -29,7 +29,7 @@ type MissionTypes = {
 
 type RelationTypes = {
 	relationName: string,
-	from: DroneTypes | ActionTypes | DroneGroupTypes  | MissionTypes,
+	from: DroneTypes | ActionTypes | DroneGroupTypes  | MissionTypes|ConstraintTypes | MissionTypes,
 	to: DroneTypes | ActionTypes | DroneGroupTypes | ConstraintTypes | MissionTypes,
 	relationType: string
 }
@@ -75,13 +75,15 @@ var firstRegulatoryConstraint: ConstraintTypes = {
 var betaMission: MissionTypes = {
 	missionName: "BetaMission",
 	droneGroup:  droneGroupAlpha,
-	actions: [firstAction]
+	actions: [firstAction],
+	constraints: [firstPermissionConstraint,firstRegulatoryConstraint]
 }
 
 var alphaMission: MissionTypes = {
 	missionName: "alphaMission",
 	droneGroup:  droneGroupAlpha,
-	actions: [firstAction, betaMission]
+	actions: [firstAction],
+	constraints: [firstPermissionConstraint,firstRegulatoryConstraint]
 }
 
 var inheritSafetyConstraint: RelationTypes = {

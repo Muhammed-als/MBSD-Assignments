@@ -2,49 +2,60 @@ grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
 
 generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
 // missing tpyeValidaiton impelemtation file
-// missing code gerenrator impleemntation
 Model:
     'system' name=ID
-    (types+=TypeDef)*
-    (vars+=VarDef)*;
+    (types+=TypeDef)* // Zero or more type definitions
+    (vars+=VarDef)*; // // Zero or more variable declarations
 
+// // Type definition, where it starts with type keyword, name, and opening brace.
 TypeDef:
     'type' name=ID '=' '{' (fields+=Field (',' fields+=Field)*)? '}';
 
+// // A field inside a type
 Field:
     name=ID ':' type=FieldType
 ;
 
+// Field type: may be a union and/or array
 FieldType:
     union=UnionType array?='[]'?
 ;
 
+// Union type (multiple types combined with |)
 UnionType:
     types+=SimpleType ('|' types+=SimpleType)*
 ;
 
+// A simple type is either a primitive or a reference to a type
 SimpleType:
     PrimitiveType | RefType
 ;
 
+// Primitive types: string or number
 PrimitiveType:
     value=('string' | 'number') // Feature 'value' will hold "string" or "number"
 ;
-    
+
+// Reference to another defined type
 RefType:
 	type=[TypeDef] // Feature 'type' (cross-reference)
 ;
 
+// Variable definition
 VarDef:
     'var' name=ID ':' type=[TypeDef] '=' value=StructValue;
 
+
+// Struct literal (object with field values)
 StructValue:
     '{' (entries+=FieldValue (',' entries+=FieldValue)*)? '}';
 
+// One entry inside a struct (field name and its value)
 FieldValue:
     name=ID ':' value=Value
 ;
 
+// value type: can be a literal, variable reference, array, or nested struct
 Value:
     Literal
     | VarRef
@@ -52,12 +63,16 @@ Value:
     | StructValue
 ;
 
+// Reference to another variable
 VarRef:
     ref=[VarDef]
 ;
+
+// Array of values
 ArrayValue:
     '[' (elements+=Value (',' elements+=Value)*)? ']';
 
+// Literal values (string or number)
 Literal:
     StringLiteral | NumberLiteral;
 

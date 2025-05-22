@@ -35,15 +35,14 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cVarsVarDefParserRuleCall_3_0 = (RuleCall)cVarsAssignment_3.eContents().get(0);
 		
 		//// missing tpyeValidaiton impelemtation file
-		//// missing code gerenrator impleemntation
 		//Model:
 		//    'system' name=ID
-		//    (types+=TypeDef)*
+		//    (types+=TypeDef)* // Zero or more type definitions
 		//    (vars+=VarDef)*;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'system' name=ID
-		//(types+=TypeDef)*
+		//(types+=TypeDef)* // Zero or more type definitions
 		//(vars+=VarDef)*
 		public Group getGroup() { return cGroup; }
 		
@@ -62,7 +61,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//TypeDef
 		public RuleCall getTypesTypeDefParserRuleCall_2_0() { return cTypesTypeDefParserRuleCall_2_0; }
 		
-		//(vars+=VarDef)*
+		//// Zero or more type definitions
+		//   (vars+=VarDef)*
 		public Assignment getVarsAssignment_3() { return cVarsAssignment_3; }
 		
 		//VarDef
@@ -85,6 +85,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cFieldsFieldParserRuleCall_4_1_1_0 = (RuleCall)cFieldsAssignment_4_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
+		// // // Zero or more variable declarations
+		//// // Type definition, where it starts with type keyword, name, and opening brace.
 		//TypeDef:
 		//    'type' name=ID '=' '{' (fields+=Field (',' fields+=Field)*)? '}';
 		@Override public ParserRule getRule() { return rule; }
@@ -140,6 +142,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTypeFieldTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		
+		//// // A field inside a type
 		//Field:
 		//    name=ID ':' type=FieldType
 		//;
@@ -171,6 +174,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cArrayAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final Keyword cArrayLeftSquareBracketRightSquareBracketKeyword_1_0 = (Keyword)cArrayAssignment_1.eContents().get(0);
 		
+		//// Field type: may be a union and/or array
 		//FieldType:
 		//    union=UnionType array?='[]'?
 		//;
@@ -201,6 +205,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cTypesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cTypesSimpleTypeParserRuleCall_1_1_0 = (RuleCall)cTypesAssignment_1_1.eContents().get(0);
 		
+		//// Union type (multiple types combined with |)
 		//UnionType:
 		//    types+=SimpleType ('|' types+=SimpleType)*
 		//;
@@ -233,6 +238,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cPrimitiveTypeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cRefTypeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
+		//// A simple type is either a primitive or a reference to a type
 		//SimpleType:
 		//    PrimitiveType | RefType
 		//;
@@ -254,6 +260,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cValueStringKeyword_0_0 = (Keyword)cValueAlternatives_0.eContents().get(0);
 		private final Keyword cValueNumberKeyword_0_1 = (Keyword)cValueAlternatives_0.eContents().get(1);
 		
+		//// Primitive types: string or number
 		//PrimitiveType:
 		//    value=('string' | 'number') // Feature 'value' will hold "string" or "number"
 		//;
@@ -277,6 +284,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final CrossReference cTypeTypeDefCrossReference_0 = (CrossReference)cTypeAssignment.eContents().get(0);
 		private final RuleCall cTypeTypeDefIDTerminalRuleCall_0_1 = (RuleCall)cTypeTypeDefCrossReference_0.eContents().get(1);
 		
+		//// Reference to another defined type
 		//RefType:
 		//    type=[TypeDef] // Feature 'type' (cross-reference)
 		//;
@@ -305,6 +313,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cValueAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cValueStructValueParserRuleCall_5_0 = (RuleCall)cValueAssignment_5.eContents().get(0);
 		
+		//// Variable definition
 		//VarDef:
 		//    'var' name=ID ':' type=[TypeDef] '=' value=StructValue;
 		@Override public ParserRule getRule() { return rule; }
@@ -355,6 +364,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cEntriesFieldValueParserRuleCall_1_1_1_0 = (RuleCall)cEntriesAssignment_1_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
+		//// Struct literal (object with field values)
 		//StructValue:
 		//    '{' (entries+=FieldValue (',' entries+=FieldValue)*)? '}';
 		@Override public ParserRule getRule() { return rule; }
@@ -398,6 +408,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cValueValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
+		//// One entry inside a struct (field name and its value)
 		//FieldValue:
 		//    name=ID ':' value=Value
 		//;
@@ -429,6 +440,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cArrayValueParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cStructValueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
+		//// value type: can be a literal, variable reference, array, or nested struct
 		//Value:
 		//    Literal
 		//    | VarRef
@@ -461,6 +473,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final CrossReference cRefVarDefCrossReference_0 = (CrossReference)cRefAssignment.eContents().get(0);
 		private final RuleCall cRefVarDefIDTerminalRuleCall_0_1 = (RuleCall)cRefVarDefCrossReference_0.eContents().get(1);
 		
+		//// Reference to another variable
 		//VarRef:
 		//    ref=[VarDef]
 		//;
@@ -488,6 +501,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cElementsValueParserRuleCall_1_1_1_0 = (RuleCall)cElementsAssignment_1_1_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
+		//// Array of values
 		//ArrayValue:
 		//    '[' (elements+=Value (',' elements+=Value)*)? ']';
 		@Override public ParserRule getRule() { return rule; }
@@ -528,6 +542,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cStringLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cNumberLiteralParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
+		//// Literal values (string or number)
 		//Literal:
 		//    StringLiteral | NumberLiteral;
 		@Override public ParserRule getRule() { return rule; }
@@ -647,10 +662,9 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 
 	
 	//// missing tpyeValidaiton impelemtation file
-	//// missing code gerenrator impleemntation
 	//Model:
 	//    'system' name=ID
-	//    (types+=TypeDef)*
+	//    (types+=TypeDef)* // Zero or more type definitions
 	//    (vars+=VarDef)*;
 	public ModelElements getModelAccess() {
 		return pModel;
@@ -660,6 +674,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getModelAccess().getRule();
 	}
 	
+	// // // Zero or more variable declarations
+	//// // Type definition, where it starts with type keyword, name, and opening brace.
 	//TypeDef:
 	//    'type' name=ID '=' '{' (fields+=Field (',' fields+=Field)*)? '}';
 	public TypeDefElements getTypeDefAccess() {
@@ -670,6 +686,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getTypeDefAccess().getRule();
 	}
 	
+	//// // A field inside a type
 	//Field:
 	//    name=ID ':' type=FieldType
 	//;
@@ -681,6 +698,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getFieldAccess().getRule();
 	}
 	
+	//// Field type: may be a union and/or array
 	//FieldType:
 	//    union=UnionType array?='[]'?
 	//;
@@ -692,6 +710,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getFieldTypeAccess().getRule();
 	}
 	
+	//// Union type (multiple types combined with |)
 	//UnionType:
 	//    types+=SimpleType ('|' types+=SimpleType)*
 	//;
@@ -703,6 +722,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getUnionTypeAccess().getRule();
 	}
 	
+	//// A simple type is either a primitive or a reference to a type
 	//SimpleType:
 	//    PrimitiveType | RefType
 	//;
@@ -714,6 +734,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getSimpleTypeAccess().getRule();
 	}
 	
+	//// Primitive types: string or number
 	//PrimitiveType:
 	//    value=('string' | 'number') // Feature 'value' will hold "string" or "number"
 	//;
@@ -725,6 +746,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getPrimitiveTypeAccess().getRule();
 	}
 	
+	//// Reference to another defined type
 	//RefType:
 	//    type=[TypeDef] // Feature 'type' (cross-reference)
 	//;
@@ -736,6 +758,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getRefTypeAccess().getRule();
 	}
 	
+	//// Variable definition
 	//VarDef:
 	//    'var' name=ID ':' type=[TypeDef] '=' value=StructValue;
 	public VarDefElements getVarDefAccess() {
@@ -746,6 +769,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getVarDefAccess().getRule();
 	}
 	
+	//// Struct literal (object with field values)
 	//StructValue:
 	//    '{' (entries+=FieldValue (',' entries+=FieldValue)*)? '}';
 	public StructValueElements getStructValueAccess() {
@@ -756,6 +780,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getStructValueAccess().getRule();
 	}
 	
+	//// One entry inside a struct (field name and its value)
 	//FieldValue:
 	//    name=ID ':' value=Value
 	//;
@@ -767,6 +792,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getFieldValueAccess().getRule();
 	}
 	
+	//// value type: can be a literal, variable reference, array, or nested struct
 	//Value:
 	//    Literal
 	//    | VarRef
@@ -781,6 +807,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getValueAccess().getRule();
 	}
 	
+	//// Reference to another variable
 	//VarRef:
 	//    ref=[VarDef]
 	//;
@@ -792,6 +819,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getVarRefAccess().getRule();
 	}
 	
+	//// Array of values
 	//ArrayValue:
 	//    '[' (elements+=Value (',' elements+=Value)*)? ']';
 	public ArrayValueElements getArrayValueAccess() {
@@ -802,6 +830,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getArrayValueAccess().getRule();
 	}
 	
+	//// Literal values (string or number)
 	//Literal:
 	//    StringLiteral | NumberLiteral;
 	public LiteralElements getLiteralAccess() {
